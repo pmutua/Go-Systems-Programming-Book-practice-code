@@ -58,6 +58,21 @@ func UpdatePerson(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	respondJSON(w, http.StatusOK, person)
 }
 
+func DeletePerson(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+
+	name := vars["name"]
+	person := getPersonOr404(db, name, w, r)
+	if person == nil {
+		return
+	}
+	if err := db.Delete(&person).Error; err != nil {
+		respondError(w, http.StatusInternalServerError, err.Error())
+		return
+	}
+	respondJSON(w, http.StatusNoContent, nil)
+}
+
 //getPersonOr404 gets person instance if exists , or respond the 404 error or otherwise
 func getPersonOr404(db *gorm.DB, name string, w http.ResponseWriter, r *http.Request) *models.Person {
 	person := models.Person{}
