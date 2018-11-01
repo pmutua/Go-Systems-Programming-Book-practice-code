@@ -12,7 +12,7 @@ go get -u github.com/go-sql-driver/mysql
 
 ```md
 ├───app
-│ ├───handlers
+│ ├───handler
 │ |───models
 | └───app.go
 |───config
