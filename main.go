@@ -1,13 +1,14 @@
 package main
 
 import (
-	"log"
-	"net/http"
-
-	"github.com/gorilla/mux"
+	"github.com/health-insurance-api/app"
+	"github.com/health-insurance-api/config"
 )
 
 func main() {
-	router := mux.NewRouter()
-	log.Fatal(http.ListenAndServe(":8000", router))
+	config := config.GetConfig()
+
+	app : = &app.App{}
+	app.Initialize(config)
+	app.Run(":3000")
 }
