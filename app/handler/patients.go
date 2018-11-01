@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
 	"github.com/pmutua/health-insurance-api/app/models"
 )
@@ -28,6 +29,33 @@ func CreatePerson(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	respondJSON(w, http.StatusCreated, person)
+}
+
+func GetPerson(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+
+	name := vars["name"]
+	person := getPersonOr404(db, name, w, r)
+	if person == nil {
+		return
+	}
+	respondJSON(w, http.StatusOK, person)
+}
+
+func UpdatePerson(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+
+	name := vars["name"]
+	person := getPersonOr404(db, name, w, r)
+	if person == nil {
+		return
+	}
+	decoder := json.NewDecoder(r.Body)
+	if err := decoder.Decode(&person); err != nil {
+		respondError(w, http.StatusBadRequest, err.Error())
+		return
+	}
+	respondJSON(w, http.StatusOK, person)
 }
 
 //getPersonOr404 gets person instance if exists , or respond the 404 error or otherwise
