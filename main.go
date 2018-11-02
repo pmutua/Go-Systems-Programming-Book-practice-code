@@ -1,14 +1,11 @@
 package main
 
 import (
-	"github.com/health-insurance-api/app"
-	"github.com/health-insurance-api/config"
+	"net/http"
 )
 
 func main() {
-	config := config.GetConfig()
+	models.InitDB("postgres://pmutua@localhost/health_insurance")
 
-	app : = &app.App{}
-	app.Initialize(config)
-	app.Run(":3000")
+	http.ListenAndServe(":3000", nil)
 }
