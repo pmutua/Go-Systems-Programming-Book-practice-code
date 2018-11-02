@@ -1,6 +1,6 @@
 # Go REST API
 
-This repository is a skeleton for building production ready Golang REST API, with Swagger documentation.
+This repository is a health insurance Golang REST API, with Swagger documentation.
 
 We will use gorilla/mux and go-swagger packages.
 
