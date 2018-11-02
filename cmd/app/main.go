@@ -34,9 +34,9 @@ import (
 
 	"github.com/rs/cors"
 
-	model "github.com/jtbonhomme/health-insurance/models"
-	"github.com/pmutua/health-insurance/db"
-	"github.com/pmutua/health-insurance/router"
+	"github.com/pmutua/health-insurance-api/db"
+	model "github.com/pmutua/health-insurance-api/models"
+	"github.com/pmutua/health-insurance-api/router"
 )
 
 // setupGlobalMiddleware will setup CORS
