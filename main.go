@@ -34,4 +34,12 @@ func main() {
 	// Get Value of existing Key
 	fmt.Printf("Sunday is the %dth day of the week.\n", aMap["Sun"])
 
+	// Error Handling
+	_, ok := aMap["Tuesday"]
+	if ok {
+		fmt.Printf("the Tuesday key exists!\n")
+	} else {
+		fmt.Printf("The Tuesday key does not exist!\n")
+	}
+
 }
