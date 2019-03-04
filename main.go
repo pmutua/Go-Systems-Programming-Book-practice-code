@@ -52,4 +52,20 @@ func main() {
 	fmt.Printf("\n")
 	fmt.Printf("The aMap has %d elements\n", count)
 
+	// Alternative way of initializing a map
+
+	anotherMap := map[string]int{
+		"One":  1,
+		"Two":  2,
+		"Tree": 3,
+		"Four": 4,
+	}
+
+	anotherMap["Five"] = 5
+	count = 0
+	for _, _ = range anotherMap {
+		count++
+	}
+	fmt.Printf("anotherMap had %d elements\n", count)
+
 }
